@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}{{ config.title }}{% endblock %}
+
+{% block content %}
+{%
+set PAGE_NAMES = [
+    "ram-map",
+    "prg-map",
+]
+%}
+
+<header>{{ config.title }}</header>
+
+{{ section.content | safe }}
+
+<h2>Contents</h2>
+
+<ul>
+{% for name in PAGE_NAMES %}
+{% set page = get_page(path=name~"/index.md") %}
+  <li><a href="{{ page.permalink | safe }}">{{ page.title }}</a></li>
+{% endfor %}
+</ul>
+
+<h2>Tools</h2>
+
+<ul>
+  <li><a href="https://taotao54321.github.io/DQ1PasswordCalc/">復活の呪文計算機</a></li>
+</ul>
+
+<p>この文書は<a href="https://github.com/taotao54321/DQ1Resource">gitリポジトリ</a>で管理されている。誤りの指摘などは Issue へどうぞ。</p>
+{% endblock %}

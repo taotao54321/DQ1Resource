@@ -1,0 +1,7 @@
+base_url = "https://taotao54321.github.io/DQ1Resource/"
+title = "ドラゴンクエスト (FC) 解析資料"
+
+[markdown]
+highlight_code = true
+
+[extra]
