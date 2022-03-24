@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: shalzz/zola-deploy-action
-      uses: shalzz/zola-deploy-action@v0.14.1
+      uses: shalzz/zola-deploy-action@v0.15.3
       env:
         PAGES_BRANCH: gh-pages
         TOKEN: ${{ secrets.TOKEN }}
