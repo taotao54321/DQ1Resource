@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>ドラゴンクエスト (FC) 解析資料 - スクリプト</title>
+
+  <link rel="stylesheet" href="https://taotao54321.github.io/DQ1Resource/main.css">
+</head>
+<body>
+
+
+<header>
+  <a href="https://taotao54321.github.io/DQ1Resource/">ドラゴンクエスト (FC) 解析資料</a>
+</header>
+
+<p>
+Published on: 2022-03-24
+
+<br>Updated on: 2022-03-26
+
+</p>
+
+<h1>スクリプト</h1>
+
+<p>「スクリプト」とは、ウィンドウ/テキスト表示を行う命令を並べたものを指す。<br />
+例えば、イベントやアイテム名などはそれ自体スクリプトである。</p>
+<p>スクリプト命令はオペコードと 0 個以上のオペランドからなる:</p>
+<ul>
+<li><a href="https://taotao54321.github.io/DQ1Resource/char/">文字コード</a>であるバイト <code>0..=0x56 | 0x58..=0x6C</code> は 0 引数のオペコードで、単にその文字を出力する。</li>
+<li>バイト <code>0x6D..=0xEF</code> は 0 引数のオペコードで、ID <code>(オペコード) - 0x6D + 1</code> の<a href="https://taotao54321.github.io/DQ1Resource/phrase/">頻出語</a>を出力する。<br />
+内部的にはスクリプトポインタを頻出語に移している(頻出語は命令 <code>0xFA</code> で終端されている)。</li>
+<li>他のオペコードは制御命令。以下で解説する。</li>
+</ul>
+<h2 id="zhi-yu-ming-ling">制御命令</h2>
+<h3 id="0x57-kiru-li-dai-ti"><code>0x57</code> - キー入力待ち</h3>
+<p>'▼' を表示し、A または B キーの入力を待つ。</p>
+<h3 id="0xf0-ptr-u16-8bit-fu-hao-nasizheng-shu-no10jin-biao-shi-3hang-you-jie-me"><code>0xF0 &lt;ptr:u16&gt;</code> - 8bit 符号なし整数の10進表示 (3桁右詰め)</h3>
+<p>ポインタ <code>ptr</code> が指す先の <code>u8</code> 値を10進表示する。3桁右詰めで、空いた部分は空白 (<code>0x5F</code>) となる。</p>
+<p>内部的には一時バッファにフォーマット結果を書き込み、命令 <code>0xFA</code> で終端し、スクリプトポインタをそこへ移している。</p>
+<h3 id="0xf1-ptr-u16-16bit-fu-hao-nasizheng-shu-no10jin-biao-shi-5hang-you-jie-me"><code>0xF1 &lt;ptr:u16&gt;</code> - 16bit 符号なし整数の10進表示 (5桁右詰め)</h3>
+<p>ポインタ <code>ptr</code> が指す先の <code>u16</code> 値を10進表示する。5桁右詰めで、空いた部分は空白 (<code>0x5F</code>) となる。</p>
+<p>内部的には一時バッファにフォーマット結果を書き込み、命令 <code>0xFA</code> で終端し、スクリプトポインタをそこへ移している。</p>
+<h3 id="0xf2-zhu-ren-gong-noming-qian-wobiao-shi"><code>0xF2</code> - 主人公の名前を表示</h3>
+<p>主人公の名前を表示する。</p>
+<p>内部的にはスクリプトポインタを主人公の名前に移している(主人公の名前は命令 <code>0xFA</code> で終端されている)。</p>
+<h3 id="0xf3-ptr-u16-16bit-fu-hao-nasizheng-shu-no10jin-biao-shi-padeingunasi"><code>0xF3 &lt;ptr:u16&gt;</code> - 16bit 符号なし整数の10進表示 (パディングなし)</h3>
+<p>ポインタ <code>ptr</code> が指す先の <code>u16</code> 値を10進表示する。パディングなし。</p>
+<p>内部的には一時バッファにフォーマット結果を書き込み、命令 <code>0xFA</code> で終端し、スクリプトポインタをそこへ移している。</p>
+<h3 id="0xf7-n-u8-ch-u8-tong-ziwen-zi-wozhi-ding-hui-shu-zao-rifan-su"><code>0xF7 &lt;n:u8&gt; &lt;ch:u8&gt;</code> - 同じ文字を指定回数繰り返す</h3>
+<p>文字 <code>ch</code> を <code>n</code> 回繰り返し表示する。<code>ch</code> は正しい文字コードであることを期待している。</p>
+<h3 id="0xfa-sukuriputopointawofu-yuan"><code>0xFA</code> - スクリプトポインタを復元</h3>
+<p>退避しておいたスクリプトポインタを復元する。</p>
+<p>スクリプトポインタを移動する命令を実行した場合、最終的にこの命令によりスクリプトポインタが復元される。</p>
+<h3 id="0xfb-ueito"><code>0xFB</code> - ウェイト</h3>
+<p>ウェイト設定に応じた量のウェイトを入れる。</p>
+<p>ウェイト中に start キーを押すとウェイトを延長できる。</p>
+<h3 id="0xfc"><code>0xFC</code> -</h3>
+<h3 id="0xfd-sabusukuriputoshi-xing"><code>0xFD</code> - サブスクリプト実行</h3>
+<p>一時バッファの内容をスクリプトとして実行する。</p>
+<p>内部的にはスクリプトポインタを一時バッファに移している。</p>
+<h3 id="0xfe"><code>0xFE</code> -</h3>
+<h3 id="0xff"><code>0xFF</code> -</h3>
+
+
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>ドラゴンクエスト (FC) 解析資料 - 主人公の逃走</title>
+
+  <link rel="stylesheet" href="https://taotao54321.github.io/DQ1Resource/main.css">
+</head>
+<body>
+
+
+<header>
+  <a href="https://taotao54321.github.io/DQ1Resource/">ドラゴンクエスト (FC) 解析資料</a>
+</header>
+
+<p>
+Published on: 2022-03-28
+
+</p>
+
+<h1>主人公の逃走</h1>
+
+<p>戦闘時の「にげる」コマンドについて。</p>
+<p>本作ではりゅうおうを含む全ての敵から逃げられる。<br />
+ただし、イベント戦で逃げてもイベントは飛ばせない。</p>
+<h2 id="tao-zou-cheng-gong-lu">逃走成功率</h2>
+<p>逃走成功率は以下の要素に依存する:</p>
+<ul>
+<li>主人公の素早さ (A とおく)</li>
+<li>敵の守備力 (B とおく)</li>
+<li>敵のモンスターID</li>
+</ul>
+<p><code>(0..=255 の乱数) * A - K * B</code> が非負なら成功、負なら失敗となる。K はモンスターIDにより異なる:</p>
+<ul>
+<li>モンスターID <code>0..=19</code> の場合、<code>K = (0..=63 の乱数)</code></li>
+<li>モンスターID <code>20..=29</code> の場合、<code>K = (0..=95 の乱数)</code> (実際は 2 つの乱数および乱数更新時のキャリーフラグの和)</li>
+<li>モンスターID <code>30..=34</code> の場合、<code>K = (0..=127 の乱数)</code></li>
+<li>モンスターID <code>35..=39</code> の場合、<code>K = (0..=255 の乱数)</code></li>
+</ul>
+<h3 id="monsutabie-notao-zou-cheng-gong-lu-biao">モンスター別の逃走成功率表</h3>
+<p>全モンスターについて<a href="https://taotao54321.github.io/DQ1Resource/rng/">乱数</a>値を全探索し、主人公の素早さの値ごとの逃走成功率を算出した:</p>
+<ul>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-00/">スライム</a> (ID=0, 守備力=3)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-01/">スライムベス</a> (ID=1, 守備力=3)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-02/">ドラキー</a> (ID=2, 守備力=6)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-03/">ゴースト</a> (ID=3, 守備力=8)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-04/">まほうつかい</a> (ID=4, 守備力=12)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-05/">メイジドラキー</a> (ID=5, 守備力=14)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-06/">おおさそり</a> (ID=6, 守備力=16)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-07/">メーダ</a> (ID=7, 守備力=18)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-08/">メトロゴースト</a> (ID=8, 守備力=20)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-09/">ドロル</a> (ID=9, 守備力=24)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-10/">ドラキーマ</a> (ID=10, 守備力=26)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-11/">がいこつ</a> (ID=11, 守備力=22)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-12/">まどうし</a> (ID=12, 守備力=22)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-13/">てつのさそり</a> (ID=13, 守備力=42)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-14/">リカント</a> (ID=14, 守備力=30)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-15/">しりょう</a> (ID=15, 守備力=34)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-16/">メタルスライム</a> (ID=16, 守備力=255)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-17/">ヘルゴースト</a> (ID=17, 守備力=38)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-18/">リカントマムル</a> (ID=18, 守備力=36)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-19/">メーダロード</a> (ID=19, 守備力=40)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-20/">ドロルメイジ</a> (ID=20, 守備力=50)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-21/">キメラ</a> (ID=21, 守備力=48)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-22/">しのさそり</a> (ID=22, 守備力=90)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-23/">しりょうのきし</a> (ID=23, 守備力=56)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-24/">ゴーレム</a> (ID=24, 守備力=60)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-25/">ゴールドマン</a> (ID=25, 守備力=40)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-26/">よろいのきし</a> (ID=26, 守備力=78)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-27/">メイジキメラ</a> (ID=27, 守備力=68)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-28/">かげのきし</a> (ID=28, 守備力=64)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-29/">キラーリカント</a> (ID=29, 守備力=70)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-30/">ドラゴン</a> (ID=30, 守備力=74)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-31/">スターキメラ</a> (ID=31, 守備力=80)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-32/">だいまどう</a> (ID=32, 守備力=70)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-33/">あくまのきし</a> (ID=33, 守備力=82)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-34/">キースドラゴン</a> (ID=34, 守備力=84)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-35/">ストーンマン</a> (ID=35, 守備力=40)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-36/">しにがみのきし</a> (ID=36, 守備力=86)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-37/">ダースドラゴン</a> (ID=37, 守備力=90)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-38/">りゅうおう第1形態</a> (ID=38, 守備力=75)</li>
+<li><a href="https://taotao54321.github.io/DQ1Resource/hero-run-table-39/">りゅうおう第2形態</a> (ID=39, 守備力=200)</li>
+</ul>
+<h2 id="ibentozhan-niokerutao-zou">イベント戦における逃走</h2>
+<p>イベント戦で逃げた場合、イベントが飛ばされないような措置がとられる:</p>
+<ul>
+<li>フィールド (73, 100) のゴーレム戦で逃げた場合、1 歩上に移動させられる。</li>
+<li>沼地の洞窟 (4, 14) のドラゴン戦で逃げた場合、1 歩上に移動させられる。</li>
+<li>ドムドーラ (18, 12) のあくまのきし戦で逃げた場合、1 歩左に移動させられる。</li>
+<li>りゅうおう(形態不問)戦で逃げた場合、単に移動画面に戻る。りゅうおうに話しかけると再戦できる。</li>
+</ul>
+
+
+
+</body>
+</html>

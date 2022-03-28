@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>ドラゴンクエスト (FC) 解析資料 - PRG-ROM マップ</title>
+
+  <link rel="stylesheet" href="https://taotao54321.github.io/DQ1Resource/main.css">
+</head>
+<body>
+
+
+<header>
+  <a href="https://taotao54321.github.io/DQ1Resource/">ドラゴンクエスト (FC) 解析資料</a>
+</header>
+
+<p>
+Published on: 2021-09-23
+
+<br>Updated on: 2022-03-26
+
+</p>
+
+<h1>PRG-ROM マップ</h1>
+
+<h2 id="gai-yao">概要</h2>
+<table><thead><tr><th>アドレス</th><th>種別</th><th>内容</th></tr></thead><tbody>
+<tr><td><code>$8000-$8041</code></td><td>data</td><td>アイテムの買値 (0 の場合、売れない)</td></tr>
+<tr><td><code>$8042-$8044</code></td><td>data</td><td>かぎの買値</td></tr>
+<tr><td><code>$8045-$8049</code></td><td>data</td><td>宿代</td></tr>
+<tr><td><code>$804A-$8087</code></td><td>data</td><td>店の品揃え (0xFD 終端)</td></tr>
+<tr><td><code>$8088-$808F</code></td><td>data</td><td>武器の攻撃力</td></tr>
+<tr><td><code>$8090-$8097</code></td><td>data</td><td>鎧の守備力</td></tr>
+<tr><td><code>$8098-$809B</code></td><td>data</td><td>盾の守備力</td></tr>
+<tr><td><code>$809C-$80D7</code></td><td>data</td><td>所要経験値テーブル</td></tr>
+<tr><td><code>$80D8-$8125</code></td><td>data</td><td>モンスタースプライトデータテーブル</td></tr>
+<tr><td><code>$8126-$814D</code></td><td>data</td><td></td></tr>
+<tr><td><code>$814E-$816D</code></td><td>data</td><td></td></tr>
+<tr><td><code>$816E-$817A</code></td><td>data</td><td></td></tr>
+<tr><td><code>$817B-$81DE</code></td><td>data</td><td></td></tr>
+<tr><td><code>$81DF-$8256</code></td><td>data</td><td>地形の外観</td></tr>
+<tr><td><code>$8257-$827E</code></td><td>data</td><td>地形テーブル</td></tr>
+<tr><td><code>$827F-$82D2</code></td><td>data</td><td></td></tr>
+<tr><td><code>$82D3-$830E</code></td><td>data</td><td></td></tr>
+<tr><td><code>$830F-$8414</code></td><td>data</td><td></td></tr>
+<tr><td><code>$8415-$843E</code></td><td>data</td><td></td></tr>
+<tr><td><code>$843F-$849A</code></td><td>data</td><td></td></tr>
+<tr><td><code>$849B-$84D7</code></td><td>data</td><td></td></tr>
+<tr><td><code>$84D8-$850F</code></td><td>data</td><td></td></tr>
+<tr><td><code>$8510-$8563</code></td><td>data</td><td></td></tr>
+<tr><td><code>$8564-$85D9</code></td><td>data</td><td></td></tr>
+<tr><td><code>$85DA-$86B5</code></td><td>data</td><td></td></tr>
+<tr><td><code>$86B6-$86E1</code></td><td>data</td><td></td></tr>
+<tr><td><code>$86E2-$8713</code></td><td>data</td><td></td></tr>
+<tr><td><code>$8714-$871F</code></td><td>data</td><td>パレットデータ (全て黒)</td></tr>
+<tr><td><code>$8720-$872B</code></td><td>data</td><td>BGパレットデータ (フィールド)</td></tr>
+<tr><td><code>$872C-$872F</code></td><td></td><td>(未使用)</td></tr>
+<tr><td><code>$8730-$873B</code></td><td>data</td><td>BGパレットデータ (フィールド、洞窟以外)</td></tr>
+<tr><td><code>$873C-$873F</code></td><td></td><td>(未使用)</td></tr>
+<tr><td><code>$8740-$874B</code></td><td>data</td><td>BGパレットデータ (洞窟)</td></tr>
+<tr><td><code>$874D-$8758</code></td><td>data</td><td></td></tr>
+<tr><td><code>$8759-$8764</code></td><td>data</td><td>BGパレットデータ (全て赤)</td></tr>
+<tr><td><code>$8765-$8770</code></td><td>data</td><td></td></tr>
+<tr><td><code>$8771-$877C</code></td><td>data</td><td>スプライトパレットデータ (全て灰色)</td></tr>
+<tr><td><code>$877D-$8788</code></td><td>data</td><td></td></tr>
+<tr><td><code>$8789-$884C</code></td><td>data</td><td></td></tr>
+<tr><td><code>$884D-$8856</code></td><td>data</td><td>呪文の消費MP</td></tr>
+<tr><td><code>$8857-$8B39</code></td><td>data</td><td>単語データ</td></tr>
+<tr><td><code>$8B3A-$8B46</code></td><td>data</td><td>フィールドマップ行データ y=0</td></tr>
+<tr><td><code>$8B47-$8B5A</code></td><td>data</td><td>フィールドマップ行データ y=1</td></tr>
+<tr><td><code>$8B5B-$8B6E</code></td><td>data</td><td>フィールドマップ行データ y=2</td></tr>
+<tr><td><code>$8B6F-$8B7F</code></td><td>data</td><td>フィールドマップ行データ y=3</td></tr>
+<tr><td><code>$8B80-$8B92</code></td><td>data</td><td>フィールドマップ行データ y=4</td></tr>
+<tr><td><code>$8B93-$8BA7</code></td><td>data</td><td>フィールドマップ行データ y=5</td></tr>
+<tr><td><code>$8BA8-$8BBA</code></td><td>data</td><td>フィールドマップ行データ y=6</td></tr>
+<tr><td><code>$8BBB-$8BCE</code></td><td>data</td><td>フィールドマップ行データ y=7</td></tr>
+<tr><td><code>$8BCF-$8BE4</code></td><td>data</td><td>フィールドマップ行データ y=8</td></tr>
+<tr><td><code>$8BE5-$8BFC</code></td><td>data</td><td>フィールドマップ行データ y=9</td></tr>
+<tr><td><code>$8BFD-$8C12</code></td><td>data</td><td>フィールドマップ行データ y=10</td></tr>
+<tr><td><code>$8C13-$8C25</code></td><td>data</td><td>フィールドマップ行データ y=11</td></tr>
+<tr><td><code>$8C26-$8C3A</code></td><td>data</td><td>フィールドマップ行データ y=12</td></tr>
+<tr><td><code>$8C3B-$8C4D</code></td><td>data</td><td>フィールドマップ行データ y=13</td></tr>
+<tr><td><code>$8C4E-$8C63</code></td><td>data</td><td>フィールドマップ行データ y=14</td></tr>
+<tr><td><code>$8C64-$8C77</code></td><td>data</td><td>フィールドマップ行データ y=15</td></tr>
+<tr><td><code>$8C78-$8C8B</code></td><td>data</td><td>フィールドマップ行データ y=16</td></tr>
+<tr><td><code>$8C8C-$8CA0</code></td><td>data</td><td>フィールドマップ行データ y=17</td></tr>
+<tr><td><code>$8CA1-$8CB3</code></td><td>data</td><td>フィールドマップ行データ y=18</td></tr>
+<tr><td><code>$8CB4-$8CC6</code></td><td>data</td><td>フィールドマップ行データ y=19</td></tr>
+<tr><td><code>$8CC7-$8CDA</code></td><td>data</td><td>フィールドマップ行データ y=20</td></tr>
+<tr><td><code>$8CDB-$8CEB</code></td><td>data</td><td>フィールドマップ行データ y=21</td></tr>
+<tr><td><code>$8CEC-$8CFD</code></td><td>data</td><td>フィールドマップ行データ y=22</td></tr>
+<tr><td><code>$8CFE-$8D12</code></td><td>data</td><td>フィールドマップ行データ y=23</td></tr>
+<tr><td><code>$8D13-$8D26</code></td><td>data</td><td>フィールドマップ行データ y=24</td></tr>
+<tr><td><code>$8D27-$8D3A</code></td><td>data</td><td>フィールドマップ行データ y=25</td></tr>
+<tr><td><code>$8D3B-$8D4E</code></td><td>data</td><td>フィールドマップ行データ y=26</td></tr>
+<tr><td><code>$8D4F-$8D5E</code></td><td>data</td><td>フィールドマップ行データ y=27</td></tr>
+<tr><td><code>$8D5F-$8D6E</code></td><td>data</td><td>フィールドマップ行データ y=28</td></tr>
+<tr><td><code>$8D6F-$8D7E</code></td><td>data</td><td>フィールドマップ行データ y=29</td></tr>
+<tr><td><code>$8D7F-$8D91</code></td><td>data</td><td>フィールドマップ行データ y=30</td></tr>
+<tr><td><code>$8D92-$8DA4</code></td><td>data</td><td>フィールドマップ行データ y=31</td></tr>
+<tr><td><code>$8DA5-$8DB5</code></td><td>data</td><td>フィールドマップ行データ y=32</td></tr>
+<tr><td><code>$8DB6-$8DC7</code></td><td>data</td><td>フィールドマップ行データ y=33</td></tr>
+<tr><td><code>$8DC8-$8DD8</code></td><td>data</td><td>フィールドマップ行データ y=34</td></tr>
+<tr><td><code>$8DD9-$8DE9</code></td><td>data</td><td>フィールドマップ行データ y=35</td></tr>
+<tr><td><code>$8DEA-$8DFD</code></td><td>data</td><td>フィールドマップ行データ y=36</td></tr>
+<tr><td><code>$8DFE-$8E10</code></td><td>data</td><td>フィールドマップ行データ y=37</td></tr>
+<tr><td><code>$8E11-$8E23</code></td><td>data</td><td>フィールドマップ行データ y=38</td></tr>
+<tr><td><code>$8E24-$8E35</code></td><td>data</td><td>フィールドマップ行データ y=39</td></tr>
+<tr><td><code>$8E36-$8E45</code></td><td>data</td><td>フィールドマップ行データ y=40</td></tr>
+<tr><td><code>$8E46-$8E57</code></td><td>data</td><td>フィールドマップ行データ y=41</td></tr>
+<tr><td><code>$8E58-$8E66</code></td><td>data</td><td>フィールドマップ行データ y=42</td></tr>
+<tr><td><code>$8E67-$8E76</code></td><td>data</td><td>フィールドマップ行データ y=43</td></tr>
+<tr><td><code>$8E77-$8E84</code></td><td>data</td><td>フィールドマップ行データ y=44</td></tr>
+<tr><td><code>$8E85-$8E91</code></td><td>data</td><td>フィールドマップ行データ y=45</td></tr>
+<tr><td><code>$8E92-$8E9F</code></td><td>data</td><td>フィールドマップ行データ y=46</td></tr>
+<tr><td><code>$8EA0-$8EAD</code></td><td>data</td><td>フィールドマップ行データ y=47</td></tr>
+<tr><td><code>$8EAE-$8EBE</code></td><td>data</td><td>フィールドマップ行データ y=48</td></tr>
+<tr><td><code>$8EBF-$8ED5</code></td><td>data</td><td>フィールドマップ行データ y=49</td></tr>
+<tr><td><code>$8ED6-$8EE8</code></td><td>data</td><td>フィールドマップ行データ y=50</td></tr>
+<tr><td><code>$8EE9-$8EFC</code></td><td>data</td><td>フィールドマップ行データ y=51</td></tr>
+<tr><td><code>$8EFD-$8F10</code></td><td>data</td><td>フィールドマップ行データ y=52</td></tr>
+<tr><td><code>$8F11-$8F24</code></td><td>data</td><td>フィールドマップ行データ y=53</td></tr>
+<tr><td><code>$8F25-$8F39</code></td><td>data</td><td>フィールドマップ行データ y=54</td></tr>
+<tr><td><code>$8F3A-$8F4D</code></td><td>data</td><td>フィールドマップ行データ y=55</td></tr>
+<tr><td><code>$8F4E-$8F64</code></td><td>data</td><td>フィールドマップ行データ y=56</td></tr>
+<tr><td><code>$8F65-$8F7B</code></td><td>data</td><td>フィールドマップ行データ y=57</td></tr>
+<tr><td><code>$8F7C-$8F90</code></td><td>data</td><td>フィールドマップ行データ y=58</td></tr>
+<tr><td><code>$8F91-$8FA6</code></td><td>data</td><td>フィールドマップ行データ y=59</td></tr>
+<tr><td><code>$8FA7-$8FBB</code></td><td>data</td><td>フィールドマップ行データ y=60</td></tr>
+<tr><td><code>$8FBC-$8FCD</code></td><td>data</td><td>フィールドマップ行データ y=61</td></tr>
+<tr><td><code>$8FCE-$8FDF</code></td><td>data</td><td>フィールドマップ行データ y=62</td></tr>
+<tr><td><code>$8FE0-$8FF4</code></td><td>data</td><td>フィールドマップ行データ y=63</td></tr>
+<tr><td><code>$8FF5-$9008</code></td><td>data</td><td>フィールドマップ行データ y=64</td></tr>
+<tr><td><code>$9009-$901A</code></td><td>data</td><td>フィールドマップ行データ y=65</td></tr>
+<tr><td><code>$901B-$9029</code></td><td>data</td><td>フィールドマップ行データ y=66</td></tr>
+<tr><td><code>$902A-$903A</code></td><td>data</td><td>フィールドマップ行データ y=67</td></tr>
+<tr><td><code>$903B-$9049</code></td><td>data</td><td>フィールドマップ行データ y=68</td></tr>
+<tr><td><code>$904A-$905A</code></td><td>data</td><td>フィールドマップ行データ y=69</td></tr>
+<tr><td><code>$905B-$906C</code></td><td>data</td><td>フィールドマップ行データ y=70</td></tr>
+<tr><td><code>$906D-$907E</code></td><td>data</td><td>フィールドマップ行データ y=71</td></tr>
+<tr><td><code>$907F-$9091</code></td><td>data</td><td>フィールドマップ行データ y=72</td></tr>
+<tr><td><code>$9092-$90A1</code></td><td>data</td><td>フィールドマップ行データ y=73</td></tr>
+<tr><td><code>$90A2-$90B0</code></td><td>data</td><td>フィールドマップ行データ y=74</td></tr>
+<tr><td><code>$90B1-$90BF</code></td><td>data</td><td>フィールドマップ行データ y=75</td></tr>
+<tr><td><code>$90C0-$90CE</code></td><td>data</td><td>フィールドマップ行データ y=76</td></tr>
+<tr><td><code>$90CF-$90DF</code></td><td>data</td><td>フィールドマップ行データ y=77</td></tr>
+<tr><td><code>$90E0-$90F3</code></td><td>data</td><td>フィールドマップ行データ y=78</td></tr>
+<tr><td><code>$90F4-$9108</code></td><td>data</td><td>フィールドマップ行データ y=79</td></tr>
+<tr><td><code>$9109-$911D</code></td><td>data</td><td>フィールドマップ行データ y=80</td></tr>
+<tr><td><code>$911E-$9134</code></td><td>data</td><td>フィールドマップ行データ y=81</td></tr>
+<tr><td><code>$9135-$914D</code></td><td>data</td><td>フィールドマップ行データ y=82</td></tr>
+<tr><td><code>$914E-$9165</code></td><td>data</td><td>フィールドマップ行データ y=83</td></tr>
+<tr><td><code>$9166-$917A</code></td><td>data</td><td>フィールドマップ行データ y=84</td></tr>
+<tr><td><code>$917B-$918D</code></td><td>data</td><td>フィールドマップ行データ y=85</td></tr>
+<tr><td><code>$918E-$91A3</code></td><td>data</td><td>フィールドマップ行データ y=86</td></tr>
+<tr><td><code>$91A4-$91B5</code></td><td>data</td><td>フィールドマップ行データ y=87</td></tr>
+<tr><td><code>$91B6-$91C7</code></td><td>data</td><td>フィールドマップ行データ y=88</td></tr>
+<tr><td><code>$91C8-$91DC</code></td><td>data</td><td>フィールドマップ行データ y=89</td></tr>
+<tr><td><code>$91DD-$91EF</code></td><td>data</td><td>フィールドマップ行データ y=90</td></tr>
+<tr><td><code>$91F0-$9204</code></td><td>data</td><td>フィールドマップ行データ y=91</td></tr>
+<tr><td><code>$9205-$9218</code></td><td>data</td><td>フィールドマップ行データ y=92</td></tr>
+<tr><td><code>$9219-$922A</code></td><td>data</td><td>フィールドマップ行データ y=93</td></tr>
+<tr><td><code>$922B-$923C</code></td><td>data</td><td>フィールドマップ行データ y=94</td></tr>
+<tr><td><code>$923D-$9252</code></td><td>data</td><td>フィールドマップ行データ y=95</td></tr>
+<tr><td><code>$9253-$9265</code></td><td>data</td><td>フィールドマップ行データ y=96</td></tr>
+<tr><td><code>$9266-$927A</code></td><td>data</td><td>フィールドマップ行データ y=97</td></tr>
+<tr><td><code>$927B-$928F</code></td><td>data</td><td>フィールドマップ行データ y=98</td></tr>
+<tr><td><code>$9290-$92A5</code></td><td>data</td><td>フィールドマップ行データ y=99</td></tr>
+<tr><td><code>$92A6-$92BA</code></td><td>data</td><td>フィールドマップ行データ y=100</td></tr>
+<tr><td><code>$92BB-$92D0</code></td><td>data</td><td>フィールドマップ行データ y=101</td></tr>
+<tr><td><code>$92D1-$92E8</code></td><td>data</td><td>フィールドマップ行データ y=102</td></tr>
+<tr><td><code>$92E9-$9301</code></td><td>data</td><td>フィールドマップ行データ y=103</td></tr>
+<tr><td><code>$9302-$9319</code></td><td>data</td><td>フィールドマップ行データ y=104</td></tr>
+<tr><td><code>$931A-$932F</code></td><td>data</td><td>フィールドマップ行データ y=105</td></tr>
+<tr><td><code>$9330-$9345</code></td><td>data</td><td>フィールドマップ行データ y=106</td></tr>
+<tr><td><code>$9346-$935D</code></td><td>data</td><td>フィールドマップ行データ y=107</td></tr>
+<tr><td><code>$935E-$9373</code></td><td>data</td><td>フィールドマップ行データ y=108</td></tr>
+<tr><td><code>$9374-$938B</code></td><td>data</td><td>フィールドマップ行データ y=109</td></tr>
+<tr><td><code>$938C-$93A0</code></td><td>data</td><td>フィールドマップ行データ y=110</td></tr>
+<tr><td><code>$93A1-$93B6</code></td><td>data</td><td>フィールドマップ行データ y=111</td></tr>
+<tr><td><code>$93B7-$93CB</code></td><td>data</td><td>フィールドマップ行データ y=112</td></tr>
+<tr><td><code>$93CC-$93DE</code></td><td>data</td><td>フィールドマップ行データ y=113</td></tr>
+<tr><td><code>$93DF-$93EF</code></td><td>data</td><td>フィールドマップ行データ y=114</td></tr>
+<tr><td><code>$93F0-$93FE</code></td><td>data</td><td>フィールドマップ行データ y=115</td></tr>
+<tr><td><code>$93FF-$940C</code></td><td>data</td><td>フィールドマップ行データ y=116</td></tr>
+<tr><td><code>$940D-$941A</code></td><td>data</td><td>フィールドマップ行データ y=117</td></tr>
+<tr><td><code>$941B-$9424</code></td><td>data</td><td>フィールドマップ行データ y=118</td></tr>
+<tr><td><code>$9425-$942F</code></td><td>data</td><td>フィールドマップ行データ y=119</td></tr>
+<tr><td><code>$9430-$951F</code></td><td>data</td><td>フィールドマップ各行データのポインタテーブル</td></tr>
+<tr><td><code>$9520-$95B5</code></td><td>data</td><td>各マップのメタデータ</td></tr>
+<tr><td><code>$95B6-$967D</code></td><td>data</td><td>竜王の城1F マップデータ</td></tr>
+<tr><td><code>$967E-$9745</code></td><td>data</td><td>ドムドーラ マップデータ</td></tr>
+<tr><td><code>$9746-$9907</code></td><td>data</td><td>ラダトーム城1F マップデータ</td></tr>
+<tr><td><code>$9908-$9939</code></td><td>data</td><td>ラダトーム城玉座の間 マップデータ</td></tr>
+<tr><td><code>$993A-$9AFB</code></td><td>data</td><td>竜王の城玉座の間 マップデータ</td></tr>
+<tr><td><code>$9AFC-$9C1B</code></td><td>data</td><td>マイラ マップデータ</td></tr>
+<tr><td><code>$9C1C-$9DDD</code></td><td>data</td><td>ラダトームの町 マップデータ</td></tr>
+<tr><td><code>$9DDE-$9F9F</code></td><td>data</td><td>メルキド マップデータ</td></tr>
+<tr><td><code>$9FA0-$A067</code></td><td>data</td><td>ガライ マップデータ</td></tr>
+<tr><td><code>$A068-$A229</code></td><td>data</td><td>リムルダール マップデータ</td></tr>
+<tr><td><code>$A22A-$A3EB</code></td><td>data</td><td>ラダトームの町 マッププレーンデータ</td></tr>
+<tr><td><code>$A22A-$A25B</code></td><td>data</td><td>ラダトーム城地下 マップデータ</td></tr>
+<tr><td><code>$A25C-$A28D</code></td><td>data</td><td>雨のほこら マップデータ</td></tr>
+<tr><td><code>$A28E-$A2BF</code></td><td>data</td><td>聖なるほこら マップデータ</td></tr>
+<tr><td><code>$A2C0-$A387</code></td><td>data</td><td>竜王の城B1F マップデータ</td></tr>
+<tr><td><code>$A388-$A3B9</code></td><td>data</td><td>竜王の城B2F マップデータ</td></tr>
+<tr><td><code>$A3BA-$A3EB</code></td><td>data</td><td>竜王の城B3F マップデータ</td></tr>
+<tr><td><code>$A3EC-$A4B3</code></td><td>data</td><td>ガライ マッププレーンデータ</td></tr>
+<tr><td><code>$A3EC-$A41D</code></td><td>data</td><td>竜王の城B4F マップデータ</td></tr>
+<tr><td><code>$A41E-$A44F</code></td><td>data</td><td>竜王の城B5F マップデータ</td></tr>
+<tr><td><code>$A450-$A481</code></td><td>data</td><td>竜王の城B6F マップデータ</td></tr>
+<tr><td><code>$A482-$A4DB</code></td><td>data</td><td>沼地の洞窟 マップデータ</td></tr>
+<tr><td><code>$A4B4-$A675</code></td><td>data</td><td>メルキド マッププレーンデータ</td></tr>
+<tr><td><code>$A4DC-$A53D</code></td><td>data</td><td>岩山の洞窟B1F マップデータ</td></tr>
+<tr><td><code>$A53E-$A59F</code></td><td>data</td><td>岩山の洞窟B2F マップデータ</td></tr>
+<tr><td><code>$A5A0-$A667</code></td><td>data</td><td>ガライの墓B1F マップデータ</td></tr>
+<tr><td><code>$A668-$A72F</code></td><td>data</td><td>ガライの墓B3F マップデータ</td></tr>
+<tr><td><code>$A676-$A837</code></td><td>data</td><td>リムルダール マッププレーンデータ</td></tr>
+<tr><td><code>$A730-$A761</code></td><td>data</td><td>ガライの墓B4F マップデータ</td></tr>
+<tr><td><code>$A762-$A7B5</code></td><td>data</td><td>ガライの墓B2F マップデータ</td></tr>
+<tr><td><code>$A7B6-$A7E7</code></td><td>data</td><td>ロトの洞窟B1F マップデータ</td></tr>
+<tr><td><code>$A7E8-$A819</code></td><td>data</td><td>ロトの洞窟B2F マップデータ</td></tr>
+<tr><td><code>$A81A-$A837</code></td><td></td><td>(未使用)</td></tr>
+</tbody></table>
+
+
+
+</body>
+</html>
