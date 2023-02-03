@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>ドラゴンクエスト (FC) 解析資料 - RAM マップ</title>
+
+  <link rel="stylesheet" href="https://taotao54321.github.io/DQ1Resource/main.css">
+</head>
+<body>
+
+
+<header>
+  <a href="https://taotao54321.github.io/DQ1Resource/">ドラゴンクエスト (FC) 解析資料</a>
+</header>
+
+<p>
+Published on: 2021-09-23
+
+</p>
+
+<h1>RAM マップ</h1>
+
+<h2 id="gai-yao">概要</h2>
+<table><thead><tr><th>アドレス</th><th>型</th><th>内容</th></tr></thead><tbody>
+<tr><td><code>$00-$01</code></td><td></td><td>雑用</td></tr>
+<tr><td><code>$02</code></td><td><code>u8</code></td><td>NMI完了待ち用(NMI完了時に 0 になる)。通常は 1 にしてNMIの完了を待つ。0xFF にするとNMI内のPPU関連処理がスキップされる</td></tr>
+<tr><td><code>$03</code></td><td><code>u8</code></td><td>PPUデータ転送キューの要素数</td></tr>
+<tr><td><code>$04</code></td><td><code>u8</code></td><td>PPUデータ転送キューの現在のオフセット</td></tr>
+<tr><td><code>$05</code></td><td><code>u16</code></td><td>PPUスクロールオフセットx</td></tr>
+<tr><td><code>$07</code></td><td><code>u8</code></td><td>PPUスクロールオフセットy</td></tr>
+<tr><td><code>$08-$10</code></td><td></td><td>雑用</td></tr>
+<tr><td><code>$11</code></td><td><code>ptr</code></td><td>現在のマップデータへのポインタ</td></tr>
+<tr><td><code>$13</code></td><td><code>u8</code></td><td>現在のマップ座標x最大値(この値 +1 がマップ幅となる)</td></tr>
+<tr><td><code>$14</code></td><td><code>u8</code></td><td>現在のマップ座標y最大値(この値 +1 がマップ高さとなる)</td></tr>
+<tr><td><code>$15</code></td><td><code>u8</code></td><td>現在のマップの範囲外を埋める地形</td></tr>
+<tr><td><code>$16</code></td><td><code>u8</code></td><td>現在のマップ種別 (0:フィールド, 0x20:洞窟, 0x10:それ以外)</td></tr>
+<tr><td><code>$17</code></td><td><code>ptr</code></td><td>現在のマッププレーンデータへのポインタ (0 の場合無効)</td></tr>
+<tr><td><code>$19</code></td><td><code>u8</code></td><td>現在位置のマッププレーン (0:表, 8:裏)</td></tr>
+<tr><td><code>$1A</code></td><td><code>u8[8][2]</code></td><td>開けた扉の座標 (x,y) の配列</td></tr>
+<tr><td><code>$2A</code></td><td><code>u8[8][2]</code></td><td>開けた宝箱の座標 (x,y) の配列</td></tr>
+<tr><td><code>$3A</code></td><td><code>u8</code></td><td>現在位置のマップ座標x</td></tr>
+<tr><td><code>$3B</code></td><td><code>u8</code></td><td>現在位置のマップ座標y</td></tr>
+<tr><td><code>$3C-$43</code></td><td></td><td>雑用</td></tr>
+<tr><td><code>$44</code></td><td></td><td>(未使用)</td></tr>
+<tr><td><code>$45</code></td><td><code>u8</code></td><td>現在のマップID</td></tr>
+<tr><td><code>$46</code></td><td><code>u8</code></td><td>雑用 (入力読み取り時の拡張ポート対応用)</td></tr>
+<tr><td><code>$47</code></td><td><code>u8</code></td><td>入力 (RLDUTSBA)</td></tr>
+<tr><td><code>$48</code></td><td></td><td></td></tr>
+<tr><td><code>$49</code></td><td></td><td></td></tr>
+<tr><td><code>$4A</code></td><td></td><td></td></tr>
+<tr><td><code>$4B</code></td><td></td><td></td></tr>
+<tr><td><code>$4C</code></td><td></td><td></td></tr>
+<tr><td><code>$4D-$4E</code></td><td></td><td>雑用</td></tr>
+<tr><td><code>$4F</code></td><td><code>u8</code></td><td>NMIカウンタ</td></tr>
+<tr><td><code>$50</code></td><td><code>u8</code></td><td>シンボルアニメーションカウンタ (16F ごとに 8 増え、値が 16 の倍数かどうかでシンボルスプライトを切り替える)</td></tr>
+<tr><td><code>$51-$8C</code></td><td><code>u8[20][3]</code></td><td>NPCシンボル管理用</td></tr>
+<tr><td><code>$8D</code></td><td><code>u8</code></td><td>NPCシンボル移動カウンタ (0xFF のときNPCシンボル無効。さもなくば mod 5 で 16F ごとに 1 増える)</td></tr>
+<tr><td><code>$8E</code></td><td><code>u8</code></td><td>移動先マップ座標x</td></tr>
+<tr><td><code>$8F</code></td><td><code>u8</code></td><td>移動先マップ座標y</td></tr>
+<tr><td><code>$90</code></td><td><code>u16</code></td><td>マップ上でのピクセル座標x</td></tr>
+<tr><td><code>$92</code></td><td><code>u16</code></td><td>マップ上でのピクセル座標y</td></tr>
+<tr><td><code>$94</code></td><td><code>u16</code></td><td>乱数</td></tr>
+<tr><td><code>$96</code></td><td><code>u8</code></td><td>NPCの移動を禁止するか (0:false, 0xFF:true)</td></tr>
+<tr><td><code>$97-$A1</code></td><td></td><td>雑用</td></tr>
+<tr><td><code>$A2</code></td><td></td><td>(未使用)</td></tr>
+<tr><td><code>$A3-$B4</code></td><td></td><td></td></tr>
+<tr><td><code>$B5-$B9</code></td><td><code>u8[5]</code></td><td>主人公 名前</td></tr>
+<tr><td><code>$BA</code></td><td><code>u16</code></td><td>主人公 経験値</td></tr>
+<tr><td><code>$BC</code></td><td><code>u16</code></td><td>所持金</td></tr>
+<tr><td><code>$BE</code></td><td><code>u8</code></td><td>装備 (bit0-1:盾, bit2-4:鎧, bit5-7:武器)</td></tr>
+<tr><td><code>$BF</code></td><td><code>u8</code></td><td>かぎ所持数</td></tr>
+<tr><td><code>$C0</code></td><td><code>u8</code></td><td>やくそう所持数</td></tr>
+<tr><td><code>$C1-$C4</code></td><td><code>u8[4]</code></td><td>インベントリ (1Byte あたり 2 個。4bit の道具IDが下位ニブルから順に格納される)</td></tr>
+<tr><td><code>$C5</code></td><td><code>u8</code></td><td>主人公 HP</td></tr>
+<tr><td><code>$C6</code></td><td><code>u8</code></td><td>主人公 MP</td></tr>
+<tr><td><code>$C7</code></td><td><code>u8</code></td><td>主人公 レベル</td></tr>
+<tr><td><code>$C8</code></td><td><code>u8</code></td><td>主人公 力</td></tr>
+<tr><td><code>$C9</code></td><td><code>u8</code></td><td>主人公 素早さ</td></tr>
+<tr><td><code>$CA</code></td><td><code>u8</code></td><td>主人公 最大HP</td></tr>
+<tr><td><code>$CB</code></td><td><code>u8</code></td><td>主人公 最大MP</td></tr>
+<tr><td><code>$CC</code></td><td><code>u8</code></td><td>主人公 攻撃力</td></tr>
+<tr><td><code>$CD</code></td><td><code>u8</code></td><td>主人公 守備力</td></tr>
+<tr><td><code>$CE</code></td><td><code>u8</code></td><td>呪文習得フラグ</td></tr>
+<tr><td><code>$CF</code></td><td><code>u8</code></td><td>呪文習得/各種フラグ</td></tr>
+<tr><td><code>$D0</code></td><td><code>u8</code></td><td>光源範囲 (1, 3, 5, 7 のいずれか。通常時 1, たいまつ使用で 3, レミーラ使用で 7 になる)</td></tr>
+<tr><td><code>$D1-$D9</code></td><td></td><td></td></tr>
+<tr><td><code>$DA</code></td><td><code>u8</code></td><td>光源カウンタ</td></tr>
+<tr><td><code>$DB</code></td><td><code>u8</code></td><td>聖水/トヘロス効果 (bit0:0=聖水,1=トヘロス, bit1-7:残量)</td></tr>
+<tr><td><code>$DC-$DE</code></td><td></td><td>雑用</td></tr>
+<tr><td><code>$DF</code></td><td><code>u8</code></td><td>各種フラグ</td></tr>
+<tr><td><code>$E0</code></td><td><code>u8</code></td><td>敵 モンスターID</td></tr>
+<tr><td><code>$E1</code></td><td></td><td></td></tr>
+<tr><td><code>$E2</code></td><td><code>u8</code></td><td>敵 HP</td></tr>
+<tr><td><code>$E3</code></td><td><code>u8</code></td><td>まほうのよろい装備時の歩数カウンタ (4 の倍数のときHPが 1 回復)</td></tr>
+<tr><td><code>$E4</code></td><td><code>u8</code></td><td>各種フラグ</td></tr>
+<tr><td><code>$E5</code></td><td><code>u8</code></td><td>メッセージウェイト設定 (0:FAST, 1:NORMAL, 2:SLOW)</td></tr>
+<tr><td><code>$E6-$FF</code></td><td></td><td></td></tr>
+<tr><td><code>$0100</code></td><td><code>u8</code></td><td>敵 攻撃力</td></tr>
+<tr><td><code>$0101</code></td><td><code>u8</code></td><td>敵 守備力</td></tr>
+<tr><td><code>$0102</code></td><td><code>u8</code></td><td>敵 最大HP</td></tr>
+<tr><td><code>$0103</code></td><td><code>u8</code></td><td></td></tr>
+<tr><td><code>$0104</code></td><td><code>u8</code></td><td>敵 マホトーン耐性/ラリホー耐性 (bit0-3:マホトーン耐性, bit4-7:ラリホー耐性)</td></tr>
+<tr><td><code>$0105</code></td><td><code>u8</code></td><td>敵 回避力/攻撃呪文耐性 (bit0-3:回避力, bit4-7:攻撃呪文耐性)</td></tr>
+<tr><td><code>$0106</code></td><td><code>u8</code></td><td>敵 経験値</td></tr>
+<tr><td><code>$0107</code></td><td><code>u8</code></td><td>敵 金基本値</td></tr>
+<tr><td><code>$0108-$0111</code></td><td><code>u8</code></td><td>敵 名前</td></tr>
+<tr><td><code>$0112-$01FF</code></td><td></td><td>スタック領域</td></tr>
+<tr><td><code>$0200-$02FF</code></td><td><code>Sprite[64]</code></td><td>スプライトバッファ</td></tr>
+<tr><td><code>$0300-$03BF</code></td><td><code>u8[192]</code></td><td>PPUデータ転送キュー</td></tr>
+<tr><td><code>$03C0-$03FF</code></td><td></td><td></td></tr>
+<tr><td><code>$0400-$07BF</code></td><td></td><td></td></tr>
+<tr><td><code>$07C0-$07FF</code></td><td></td><td></td></tr>
+</tbody></table>
+
+
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>ドラゴンクエスト (FC) 解析資料 - 乱数</title>
+
+  <link rel="stylesheet" href="https://taotao54321.github.io/DQ1Resource/main.css">
+</head>
+<body>
+
+
+<header>
+  <a href="https://taotao54321.github.io/DQ1Resource/">ドラゴンクエスト (FC) 解析資料</a>
+</header>
+
+<p>
+Published on: 2022-03-25
+
+<br>Updated on: 2023-02-03
+
+</p>
+
+<h1>乱数</h1>
+
+<p>乱数は 16bit で、線形合同法で生成されている。<br />
+式は <code>771*x + 129 (mod 65536)</code> で、周期 32768 の系列が 2 種類ある。</p>
+<p>ただし、乱数生成器以外で乱数を直接変更している箇所がある:</p>
+<ul>
+<li>主人公の打撃の命中判定時、乱数の上位 2bit が 0 になる。</li>
+</ul>
+<p>実際に確率判定などを行う際は乱数の上位バイトのみが使われる。<br />
+また、一部の処理では生成式中の加算によるキャリーフラグも結果に影響する。</p>
+<p>本作はサブフレーム入力による乱数調整が可能な場面がいくつかある。</p>
+
+
+
+</body>
+</html>
